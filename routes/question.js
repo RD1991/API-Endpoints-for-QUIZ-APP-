@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+var multer  = require('multer')
+var upload = multer({ dest: './uploads/' })
 
 const {
 	getQuestionByCategory,
@@ -11,6 +13,6 @@ router.param('categoryId', getCategoryById);
 
 router.get('/get/:categoryId', getQuestionByCategory);
 
-router.post('/add/:categoryId', addQuestionByCategory);
+router.post('/add/:categoryId', upload.single('image'), addQuestionByCategory);
 
 module.exports = router;

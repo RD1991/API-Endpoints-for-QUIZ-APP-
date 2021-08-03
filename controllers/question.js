@@ -32,6 +32,10 @@ exports.getQuestionByCategory = (req, res) => {
 //desc : add question by category
 //type : POST
 exports.addQuestionByCategory = (req, res) => {
+	if (('file' in req) && (req.file != null)) {
+		req.body['image'] = req.file.path;
+	}
+
 	new Question(req.body).save((error, result) => {
 		if (error) {
 			return res.status(400).json({

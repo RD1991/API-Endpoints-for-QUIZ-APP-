@@ -12,12 +12,16 @@ const userSchema = new mongoose.Schema({
 		unique: true,
 		trim: true,
 	},
-	password: {
+	phoneNumber: {
 		type: String,
+		required: true,
+		trim: true,
 	},
-	googleId: {
+	role: {
 		type: String,
-	},
+		required: true,
+		trim: true,
+	}
 });
 
 module.exports = mongoose.model('User', userSchema);

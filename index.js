@@ -11,11 +11,14 @@ const keys = require('./config/keys');
 //Import Custom Routes :
 const categoryRoute = require('./routes/category');
 const questionRoute = require('./routes/question');
+const userRoute = require('./routes/user');
 
 //use - Middleware
 //Body Parser
 //Middle Ware
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Cors Allow Access from Outside
 app.use((req, res, next) => {
@@ -36,12 +39,13 @@ mongoose
 	.catch((error) => console.log(error));
 
 app.get('/', (req, res) => {
-	res.send('Hello Wolrd');
+	res.send('Hi, Welcome to MedHustle...');
 });
 
 //Custom Routes
 app.use('/api', categoryRoute);
 app.use('/api', questionRoute);
+app.use('/api', userRoute);
 
 //PORT NUMBER
 const PORT = process.env.PORT || 5050;

@@ -22,6 +22,10 @@ const questionSchema = new mongoose.Schema(
 
 			trim: true,
 		},
+		image: {
+			type: String,
+			required: false,
+		},
 		options: {
 			type: Array,
 			required: true,
