@@ -15,20 +15,25 @@ exports.getAllCategory = (req, res) => {
 	});
 };
 
-//desc : add new Category
+//desc : add category
 //type : POST
 exports.addCategory = (req, res) => {
+	if (('file' in req) && (req.file != null)) {
+		req.body['logo'] = req.file.path;
+	}
+
 	new Category(req.body).save((error, result) => {
 		if (error) {
 			return res.status(400).json({
-				error: 'Error in adding Category',
+				error: 'Error in adding category',
 			});
 		}
 		return res.status(200).json({
-			message: `${req.body.name} Added to Category`,
+			message: 'Category Added Successfully',
 		});
 	});
 };
+
 
 exports.getCategoryById = (req, res) => {
 	// console.log(req.params);

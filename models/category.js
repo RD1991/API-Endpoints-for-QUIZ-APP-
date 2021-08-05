@@ -11,6 +11,10 @@ const categorySchema = new mongoose.Schema(
 		logo: {
 			type: String,
 		},
+		bgColor: {
+			type: String,
+			required: true
+		},
 		user: {
 			type: ObjectId,
 			ref: 'User',
